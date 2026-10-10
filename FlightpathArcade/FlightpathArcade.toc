@@ -1,0 +1,10 @@
+## Interface: 16001
+## Title: Flightpath Arcade
+## Notes: Four small games for the journey. /fpa
+## Author: Flightpath Arcade
+## Version: 1.2.0
+## SavedVariables: FlightpathArcadeDB
+Logic.lua
+Animation.lua
+UI.lua
+Core.lua

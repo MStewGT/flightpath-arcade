@@ -1,0 +1,10 @@
+dist/
+*.zip
+__pycache__/
+*.py[cod]
+.venv/
+.test-runtime/
+.env
+.env.*
+.DS_Store
+Thumbs.db

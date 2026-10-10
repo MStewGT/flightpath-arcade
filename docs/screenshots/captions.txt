@@ -1,0 +1,9 @@
+Flightpath Arcade screenshots
+
+These are original, user-captured screenshots from before version 1.2.0. They do not show the current level HUD. Image bytes are unchanged.
+
+launcher.png: Arcade launcher.
+match-three.png: Match Three, earlier pre-level-build gameplay.
+minesweeper.png: Minesweeper gameplay.
+memory-pairs.png: Memory Pairs gameplay.
+snake.png: Snake gameplay.

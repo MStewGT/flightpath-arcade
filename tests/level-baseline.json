@@ -1,0 +1,10 @@
+{
+  "other_rules_sha256": "0abacda498dc9398ad78daa69501a544544cc78d8c6c24e8456f39c50042c9d9",
+  "files": {
+    "Animation.lua": "c26d07f2aab643b6a481b802dd3b2f32e6d3e259b93c21264491adbef23c95d7",
+    "Core.lua": "49d0353de74d234008c8080588ccdd68aeaf69997a8509f52cc96821dd12411f",
+    "Media/Arcade.tga": "c1c35ecce7670a987ffbe698446228b1ba8081beecf66b0a2009c8d71412a447",
+    "Media/Buttons.tga": "94d36fc155a0ad0ea6226f58e36e637d7fa15a8c01fb8c848c8aa37fa69702d9",
+    "Media/Minimap.tga": "ba38675ab6f338396fce461b12249b92589a6714070ec4d575b8584cfe0346f4"
+  }
+}

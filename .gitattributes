@@ -1,0 +1,8 @@
+* text=auto
+*.lua text eol=lf
+*.md text eol=lf
+*.py text eol=lf
+*.tga binary
+*.png binary
+*.toc text eol=lf
+FlightpathArcade/Media/Licenses/* -text -whitespace
