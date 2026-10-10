@@ -1,0 +1,37 @@
+name: Package addon
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out selected revision
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Test packaging boundaries
+        run: python tests/test_package.py
+      - name: Build and verify install ZIP
+        id: package
+        run: python scripts/package.py --github-output "$GITHUB_OUTPUT"
+      - name: Upload install package
+        uses: actions/upload-artifact@v7
+        with:
+          name: FlightpathArcade-${{ steps.package.outputs.version }}
+          path: |
+            ${{ steps.package.outputs.zip }}
+            ${{ steps.package.outputs.checksum }}
+            ${{ steps.package.outputs.manifest }}
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
