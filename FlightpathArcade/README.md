@@ -1,6 +1,6 @@
 # Flightpath Arcade
 
-Four small, dependency-free native WoW games for flightpaths: Minesweeper, gem matching, Snake, and memory pairs. Version 1.2.0.
+Four small, dependency-free native WoW games for flightpaths: Minesweeper, gem matching, Snake, and memory pairs. Version 1.3.1.
 
 - Open from `/fpa` or the winged cyan gem minimap button
 - Automatically open when your flight starts and pause when you land
@@ -70,9 +70,10 @@ See the [in-game screenshot gallery](https://github.com/MStewGT/flightpath-arcad
 | [Rune Pack](https://kenney.nl/assets/rune-pack) | Memory pairs |
 | [Fantasy UI Borders](https://kenney.nl/assets/fantasy-ui-borders) | Window and result-panel borders |
 | [UI Pack - Adventure](https://kenney.nl/assets/ui-pack-adventure) | Button skins |
+| [Tiny Ski](https://kenney.nl/assets/tiny-ski) | Frost Run characters, hazards and scenery |
 
 Selected artwork is resized, recolored or adapted for the addon; the original CC0 notices remain bundled. Original addon code, covered tiles, card backs and minimap wings/backing are credited separately to Flightpath Arcade contributors under MIT. Kenney artwork retains its CC0 status.
 
 ## License
 
-Original addon code is available under the [MIT license](LICENSE). Selected Kenney artwork is CC0; see [asset provenance](Media/CREDITS.md) and the seven unmodified [source notices](Media/Licenses). Original artwork has its own MIT notice in Media. Only selected redistributable textures are included. World of Warcraft and Blizzard imagery belong to their respective rights holders. This project is unofficial and not endorsed by Blizzard.
+Original addon code is available under the [MIT license](LICENSE). Selected Kenney artwork is CC0; see [asset provenance](Media/CREDITS.md) and the eight unmodified [source notices](Media/Licenses). Original artwork has its own MIT notice in Media. Only selected redistributable textures are included. World of Warcraft and Blizzard imagery belong to their respective rights holders. This project is unofficial and not endorsed by Blizzard.

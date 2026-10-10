@@ -1,7 +1,7 @@
 # Artwork credits
 
 Artwork by [Kenney](https://kenney.nl), used under Creative Commons CC0.
-The seven source-pack notices are preserved verbatim in Licenses/.
+The eight source-pack notices are preserved verbatim in Licenses/.
 
 - Puzzle Pack 1: five glossy gems, atlas slots 1-5.
 - Platformer Assets Base: darkened iron bomb with selectively brightened source
@@ -31,7 +31,7 @@ The native 20/24/32-pixel comparisons are texture previews, not live WoW capture
 Runtime formats: Arcade.tga is 512 x 256; Buttons.tga is 256 x 256; Minimap.tga
 is 64 x 64 (16 KiB texture data). All are uncompressed 32-bit RGBA with
 four-pixel transparent gutters; combined texture data is 784 KiB before driver
-overhead. Only these three textures load in WoW.
+overhead. These three textures serve the original four games; Frost Run adds the textures described below.
 All four games use Kenney artwork. Notices verified on 2026-10-10.
 
 Public pack references:
@@ -40,3 +40,7 @@ https://kenney.nl/assets/fantasy-ui-borders
 https://kenney.nl/assets/rune-pack
 
 CC0 reference: https://creativecommons.org/publicdomain/zero/1.0/
+
+## Frost Run
+
+Kenney [Tiny Ski](https://kenney.nl/assets/tiny-ski), CC0: skier/air poses, snow beast poses, trees, rock, stump, snowman, ramps, flags, snow terrain, decorative nets and signs. Static poses are animated by the addon; tall trees combine their matching top/base tiles. The terrain and shoulder atlases assemble selected tiles into a looping snowy course. The unchanged source notice is `Licenses/Tiny Ski.txt`. Only the selected derived TGA textures are included.

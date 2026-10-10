@@ -11,8 +11,10 @@ load_files = [line.strip() for line in toc.splitlines() if line.strip() and not 
 allowed = set(load_files + ['FlightpathArcade.toc', 'README.md', 'LICENSE',
     'Media/Arcade.tga', 'Media/Buttons.tga', 'Media/Minimap.tga',
     'Media/CREDITS.md', 'Media/LICENSE.txt'])
+frost_names = ['tree','treeTall','deadTree','rock','stump','snowman','ramp','flagRed','flagBlue','skier','skierAir','monster','monster2','monsterAttack','terrain','decor']
+allowed.update('Media/Frost/' + name + '.tga' for name in frost_names)
 notices = sorted((addon / 'Media/Licenses').glob('*.txt'))
-assert len(notices) == 7 and all('CC0' in p.read_text() for p in notices)
+assert len(notices) == 8 and all('CC0' in p.read_text() for p in notices)
 allowed.update(p.relative_to(addon).as_posix() for p in notices)
 for name in allowed:
     assert (addon / name).is_file(), name
@@ -29,7 +31,7 @@ with zipfile.ZipFile(out, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as archive
 with zipfile.ZipFile(out) as archive:
     assert archive.testzip() is None
     assert set(archive.namelist()) == {'FlightpathArcade/' + n for n in allowed}
-print('PASS: TOC files, seven CC0 notices, explicit install-only allowlist, ZIP integrity')
+print('PASS: TOC files, eight CC0 notices, explicit install-only allowlist, ZIP integrity')
 print(out)
 print('Bytes:', out.stat().st_size)
 print('SHA256:', hashlib.sha256(out.read_bytes()).hexdigest())

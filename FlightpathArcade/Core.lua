@@ -14,6 +14,7 @@ function A:Initialize()
  for _,key in ipairs({'autoOpen','autoClose','minimap'}) do if type(self.db[key])~='boolean' then self.db[key]=true end end
  if type(self.db.uiScale)~='number' or self.db.uiScale~=self.db.uiScale then self.db.uiScale=1 end
  self.db.uiScale=math.max(0.75,math.min(1.5,self.db.uiScale))
+ if type(self.db.frostUnlocked)~='boolean' then self.db.frostUnlocked=false end
  self:BuildUI(); self:FitWindow(true); self:UpdateMinimap(); self.inFlight=false; self:FlightCheck()
  SLASH_FLIGHTPATHARCADE1='/fpa'; SLASH_FLIGHTPATHARCADE2='/flightpatharcade'
  SlashCmdList.FLIGHTPATHARCADE=function(msg) if msg=='settings' then self.screen='settings'; self:Open() else self:Toggle() end end
@@ -21,12 +22,15 @@ function A:Initialize()
  if not interface or interface<16000 or interface>=17000 then print('|cffffcc55Flightpath Arcade:|r built for Forever 1.60.x; this client is unverified.') end
 end
 local events=CreateFrame('Frame'); A.events=events
-for _,event in ipairs({'PLAYER_LOGIN','PLAYER_ENTERING_WORLD','PLAYER_CONTROL_LOST','PLAYER_CONTROL_GAINED','PLAYER_REGEN_DISABLED','UI_SCALE_CHANGED','DISPLAY_SIZE_CHANGED'}) do pcall(events.RegisterEvent,events,event) end
+for _,event in ipairs({'PLAYER_LOGIN','PLAYER_ENTERING_WORLD','PLAYER_CONTROL_LOST','PLAYER_CONTROL_GAINED','PLAYER_REGEN_DISABLED','PLAYER_REGEN_ENABLED','UI_SCALE_CHANGED','DISPLAY_SIZE_CHANGED'}) do pcall(events.RegisterEvent,events,event) end
 events:SetScript('OnEvent',function(_,event)
  if event=='PLAYER_LOGIN' then A:Initialize()
  elseif A.initialized then
   if event=='UI_SCALE_CHANGED' or event=='DISPLAY_SIZE_CHANGED' then A:FitWindow(true); if A.window:IsShown() then A:Render() end
   elseif event=='PLAYER_REGEN_DISABLED' then A:Pause(); if A.window:IsShown() then A:Render() end
+  elseif event=='PLAYER_REGEN_ENABLED' then if A.window:IsShown() then A:Render() end
+  elseif (event=='PLAYER_CONTROL_LOST' or event=='PLAYER_ENTERING_WORLD') and A.game and A.game.kind=='frost' then
+   A:Pause();A:FlightCheck();if A.window:IsShown() then A:Render() end
   else A:FlightCheck() end
  end
 end)

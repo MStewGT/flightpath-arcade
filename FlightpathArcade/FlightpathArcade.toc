@@ -2,9 +2,12 @@
 ## Title: Flightpath Arcade
 ## Notes: Four small games for the journey. /fpa
 ## Author: Flightpath Arcade
-## Version: 1.2.0
+## Version: 1.3.1
 ## SavedVariables: FlightpathArcadeDB
 Logic.lua
 Animation.lua
 UI.lua
+Frost/Simulation.lua
+Frost/Animation.lua
+Frost/UI.lua
 Core.lua

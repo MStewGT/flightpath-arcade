@@ -67,6 +67,7 @@ local function button(parent,text,x,y,w,h,fn,isCell)
  end)
  return b
 end
+A.UI={label=label,button=button,border=fantasyBorder}
 function A:BuildUI()
  self.layout=nil
  local f=CreateFrame('Frame','FlightpathArcadeWindow',UIParent,'BackdropTemplate'); self.window=f

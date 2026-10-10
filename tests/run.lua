@@ -47,6 +47,14 @@ function methods:SetPropagateKeyboardInput(v)
  self.propagate=v
 end
 function methods:SetScript(k,v) self.scripts[k]=v end
+function methods:GetScript(k) return self.scripts[k] end
+function methods:SetVertexColor(...) self.vertex={...} end
+function methods:SetDrawLayer(layer) self.layer=layer end
+function methods:SetAutoFocus(value) self.autoFocus=value end
+function methods:SetMaxLetters(value) self.maxLetters=value end
+function methods:SetFocus() self.focus=true end
+function methods:ClearFocus() self.focus=false end
+function methods:GetText() return self.textValue or '' end
 function methods:Show() self.shown=true end
 function methods:Hide() local was=self.shown; self.shown=false; if was and self.scripts.OnHide then self.scripts.OnHide(self) end end
 function methods:IsShown() return self.shown end
@@ -99,7 +107,9 @@ UIParent:SetSize(1920/0.8,1080/0.8); UIParent:SetScale(0.8)
 GameTooltip=CreateFrame('Frame'); local taxi=false
 function UnitOnTaxi() return taxi end
 function GetBuildInfo() return '1.60.1','70009','',16001 end
-dofile('FlightpathArcade/UI.lua'); dofile('FlightpathArcade/Core.lua')
+dofile('FlightpathArcade/UI.lua')
+dofile('FlightpathArcade/Frost/Simulation.lua'); dofile('FlightpathArcade/Frost/Animation.lua'); dofile('FlightpathArcade/Frost/UI.lua')
+dofile('FlightpathArcade/Core.lua')
 local A=FlightpathArcade; A:Initialize(); check(not A.window:IsShown(),'login grounded')
 taxi=true; A:FlightCheck(); check(A.window:IsShown(),'flight opens'); A:Close(); A:FlightCheck(); check(not A.window:IsShown(),'dismiss persists')
 taxi=false; A:FlightCheck(); taxi=true; A:FlightCheck(); check(A.window:IsShown(),'next flight opens')
@@ -351,4 +361,9 @@ check(A.game.status=='lost' and A.gemResult:IsVisible() and A.resultTitle.textVa
 check(A.resultPrimary.text.textValue=='Retry level','loss primary clearly retries')
 A:ResultAction('primary');check(A.game.level==10 and A.game.moves==20,'loss retry current level')
 A.game.status='lost';A.game.moves=0;A:Render();A:ResultAction('secondary');check(A.game.level==1,'loss New run resets')
+dofile('tests/frost_integration.lua')(A,check,{
+ combat=function(v) combat=v end,deny=function(v) denyPropagation=v end,
+ taxi=function(v) taxi=v end,
+ counts=function() return #frames,regionCount end
+})
 print('PASS: '..count..' deterministic logic and mock UI assertions')
