@@ -1,9 +1,10 @@
 Flightpath Arcade screenshots
 
-These are original, user-captured screenshots from before version 1.2.0. They do not show the current level HUD. Image bytes are unchanged.
+Updated original user-captured in-game screenshots. Image bytes are unchanged.
 
-launcher.png: Arcade launcher.
-match-three.png: Match Three, earlier pre-level-build gameplay.
-minesweeper.png: Minesweeper gameplay.
-memory-pairs.png: Memory Pairs gameplay.
-snake.png: Snake gameplay.
+launcher.png: Launcher during a flight through Elwynn Forest.
+match-three.png: Gem matching at level 3, score 150/700, with 18 moves remaining.
+minesweeper.png: Minesweeper with 41/54 safe squares revealed.
+memory-pairs.png: Memory pairs with 2/8 pairs found in seven turns.
+snake.png: Snake game over with a score of six.
+settings.png: Preferences with flight options and minimap button enabled; scale 100%.
