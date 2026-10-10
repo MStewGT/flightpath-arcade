@@ -1,6 +1,6 @@
 # Flightpath Arcade
 
-Four small, dependency-free native WoW games for flightpaths: Minesweeper, gem matching, Snake, and memory pairs. Version 1.3.1.
+Four small, dependency-free native WoW games for flightpaths: Minesweeper, gem matching, Snake, and memory pairs. Version 1.3.2.
 
 - Open from `/fpa` or the winged cyan gem minimap button
 - Automatically open when your flight starts and pause when you land

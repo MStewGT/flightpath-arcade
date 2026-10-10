@@ -128,8 +128,7 @@ function A:Resume()
  if self.screen~='game' or not self.window:IsShown() or self.game.status~='playing' or combat() then return false end
  self:Pause()
  if not pcall(self.window.SetPropagateKeyboardInput,self.window,false) then return false end
- local edit=ChatEdit_GetActiveWindow and ChatEdit_GetActiveWindow()
- if edit and ChatEdit_DeactivateChat then ChatEdit_DeactivateChat(edit) end
+ if not self:ReleaseChatFocus() then return false end
  self.game.paused=false;self.paused=false;self.keyboardCaptured=true;self.window:EnableKeyboard(true);return true
 end
 function A:RenderFrost()

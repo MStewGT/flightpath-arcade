@@ -176,6 +176,19 @@ function A:Pause()
  -- restricted propagation property while entering combat or releasing focus.
  self.window:EnableKeyboard(false)
 end
+function A:ReleaseChatFocus()
+ -- Forever exposes these helpers on ChatFrameUtil. Fail closed if unavailable
+ -- or rejected, so Resume never captures keys while chat may still own focus.
+ local chat=ChatFrameUtil
+ if type(chat)~='table' or type(chat.GetActiveWindow)~='function' or type(chat.DeactivateChat)~='function' then return false end
+ local ok,edit=pcall(chat.GetActiveWindow)
+ if not ok then return false end
+ if edit then
+  if not pcall(chat.DeactivateChat,edit) then return false end
+  ok,edit=pcall(chat.GetActiveWindow)
+ end
+ return ok and not edit
+end
 function A:Resume()
  if not self.game or (self.game.status~='playing' and not self.game.animation) or self.screen~='game' or not self.window:IsShown() then return false end
  if self.game.kind=='snake' then
@@ -185,8 +198,7 @@ function A:Resume()
   self:Pause()
   local ok=pcall(self.window.SetPropagateKeyboardInput,self.window,false)
   if not ok then return false end
-  local edit=ChatEdit_GetActiveWindow and ChatEdit_GetActiveWindow()
-  if edit and ChatEdit_DeactivateChat then ChatEdit_DeactivateChat(edit) end
+  if not self:ReleaseChatFocus() then return false end
   self.window:EnableKeyboard(true); self.keyboardCaptured=true
  end
  self.paused=false

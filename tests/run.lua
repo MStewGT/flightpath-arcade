@@ -40,6 +40,8 @@ local denyPropagation=false
 local propagationCalls=0
 local layoutCalls=0
 function InCombatLockdown() return combat end
+-- Modern Forever chat surface; deprecated aliases intentionally absent.
+ChatFrameUtil={GetActiveWindow=function() return nil end,DeactivateChat=function() end}
 function methods:SetPropagateKeyboardInput(v)
  propagationCalls=propagationCalls+1
  assert(not combat,'restricted propagation called in combat')
@@ -365,5 +367,8 @@ dofile('tests/frost_integration.lua')(A,check,{
  combat=function(v) combat=v end,deny=function(v) denyPropagation=v end,
  taxi=function(v) taxi=v end,
  counts=function() return #frames,regionCount end
+})
+dofile('tests/chat_focus.lua')(A,check,{
+ combat=function(v) combat=v end,deny=function(v) denyPropagation=v end
 })
 print('PASS: '..count..' deterministic logic and mock UI assertions')
