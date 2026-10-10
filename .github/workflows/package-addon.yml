@@ -1,4 +1,4 @@
-name: Package addon
+name: Release addon
 
 on:
   workflow_dispatch:
@@ -6,14 +6,21 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: flightpath-arcade-release
+  cancel-in-progress: false
+
 jobs:
   package:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    outputs:
+      version: ${{ steps.package.outputs.version }}
     steps:
       - name: Check out selected revision
         uses: actions/checkout@v7
         with:
+          ref: ${{ github.sha }}
           persist-credentials: false
       - name: Set up Python
         uses: actions/setup-python@v7
@@ -21,6 +28,8 @@ jobs:
           python-version: '3.13'
       - name: Test packaging boundaries
         run: python tests/test_package.py
+      - name: Test release safeguards
+        run: python tests/test_release.py
       - name: Build and verify install ZIP
         id: package
         run: python scripts/package.py --github-output "$GITHUB_OUTPUT"
@@ -35,3 +44,28 @@ jobs:
           if-no-files-found: error
           compression-level: 0
           retention-days: 30
+
+  release:
+    needs: package
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - name: Check out tested revision
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Download verified package
+        uses: actions/download-artifact@v8
+        with:
+          name: FlightpathArcade-${{ needs.package.outputs.version }}
+          path: dist/release
+      - name: Publish or verify versioned Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/release.py --assets dist/release
