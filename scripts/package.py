@@ -29,8 +29,8 @@ def inputs(addon):
     versions = re.findall(r'^## Version: (\d+\.\d+\.\d+)\s*$', toc, re.M)
     if len(versions) != 1:
         raise ValueError('Expected exactly one major.minor.patch TOC version')
-    if not re.search(r'^## Interface: 16001\s*$', toc, re.M):
-        raise ValueError('Expected Forever Interface 16001')
+    if not re.search(r'^## Interface: 16001, 16002\s*$', toc, re.M):
+        raise ValueError('Expected Forever beta Interfaces 16001 and 16002')
     runtime = [safe_name(s.strip()) for s in toc.splitlines()
                if s.strip() and not s.lstrip().startswith('#')]
     if not runtime or len(runtime) != len(set(runtime)) or any(not n.endswith('.lua') for n in runtime):

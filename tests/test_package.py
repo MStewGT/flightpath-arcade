@@ -69,7 +69,9 @@ class PackagingTests(unittest.TestCase):
         variants=[original+'\nLogic.lua\n',original.replace('Core.lua',''),
                   original.replace('Logic.lua\nAnimation.lua','Animation.lua\nLogic.lua'),
                   original.replace(VERSION,'../bad'),original+'\n## Version: 2.0.0\n',
-                  original.replace('16001','99999')]
+                  original.replace('16001','99999'),
+                  original.replace('16002','99999'),
+                  original.replace('16001, 16002','16002')]
         for text in variants:
             p.write_text(text)
             with self.assertRaises(ValueError):package.build(self.root)
