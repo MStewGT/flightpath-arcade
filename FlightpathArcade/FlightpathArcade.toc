@@ -1,8 +1,8 @@
-## Interface: 16001
+## Interface: 16001, 16002
 ## Title: Flightpath Arcade
 ## Notes: Four small games for the journey. /fpa
 ## Author: Flightpath Arcade
-## Version: 1.3.2
+## Version: 1.3.3
 ## X-Wago-ID: O67b8gN3
 ## SavedVariables: FlightpathArcadeDB
 Logic.lua
